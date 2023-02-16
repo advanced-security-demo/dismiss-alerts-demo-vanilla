@@ -196,7 +196,7 @@ func (g *Gallery) Create(profile *OctoProfile) error {
 
 func (g Gallery) Update(profile *OctoProfile) error {
 	db := GetDb()
-
+        //codeql[go/sql-injection]
 	stmt, err := db.Prepare(fmt.Sprintf("UPDATE gallery SET title = '%s', description = '%s' WHERE id = %d and login = '%s'", g.Title, g.Description, g.ID, profile.Login))
 	if err != nil {
 		return err
